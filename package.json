@@ -1,8 +1,35 @@
 {
-  "private": true,
+  "name": "get-wanted-dependencies",
+  "version": "0.0.0",
+  "description": "TODO.",
+  "author": "Luke Horvat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukehorvat/get-wanted-dependencies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lukehorvat/get-wanted-dependencies/issues"
+  },
+  "main": "./index.js",
   "dependencies": {
     "object-assign": "4.0.1",
     "read-package-tree": "5.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "keywords": [
+    "wanted",
+    "dependencies",
+    "dependency",
+    "deps",
+    "outdated",
+    "current",
+    "latest",
+    "npm",
+    "package",
+    "install"
+  ]
 }

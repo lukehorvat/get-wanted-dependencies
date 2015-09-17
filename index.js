@@ -1,7 +1,7 @@
 "use strict";
 
-var readPackageTree = require("read-package-tree");
 var objectAssign = require("object-assign");
+var readPackageTree = require("read-package-tree");
 
 module.exports = function(dir, cb) {
   readPackageTree(dir, function(err, root) {
