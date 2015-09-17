@@ -7,12 +7,16 @@ module.exports = function(dir, cb) {
       return;
     }
 
-    var isUpToDate = root.children.every(function(child) {
-      var currentVersion = child.package.version;
-      var wantedVersion = root.package.dependencies[child.package.name];
-      return !wantedVersion || currentVersion === wantedVersion;
+    var wantedDependencies = root.children.map(function(child) {
+      return {
+        name: child.package.name,
+        currentVersion: child.package.version,
+        wantedVersion: root.package.dependencies[child.package.name]
+      };
+    }).filter(function(dependency) {
+      return dependency.wantedVersion && dependency.currentVersion !== dependency.wantedVersion;
     });
 
-    cb(null, isUpToDate);
+    cb(null, wantedDependencies);
   });
 };
