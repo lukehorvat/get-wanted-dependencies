@@ -7,14 +7,21 @@ module.exports = function(dir, cb) {
       return;
     }
 
-    var wantedDependencies = root.children.map(function(child) {
+    var packageDependencyVersions = root.package.dependencies;
+
+    var installedDependencyVersions = root.children.reduce(function(obj, child) {
+      obj[child.package.name] = child.package.version;
+      return obj;
+    }, {});
+
+    var wantedDependencies = Object.keys(packageDependencyVersions).map(function(name) {
       return {
-        name: child.package.name,
-        currentVersion: child.package.version,
-        wantedVersion: root.package.dependencies[child.package.name]
+        packageName: name,
+        installedVersion: installedDependencyVersions[name] || null,
+        wantedVersion: packageDependencyVersions[name]
       };
     }).filter(function(dependency) {
-      return dependency.wantedVersion && dependency.currentVersion !== dependency.wantedVersion;
+      return dependency.installedVersion !== dependency.wantedVersion;
     });
 
     cb(null, wantedDependencies);
