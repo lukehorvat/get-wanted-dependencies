@@ -1,12 +1,13 @@
 "use strict";
 
 var objectAssign = require("object-assign");
+var pify = require("pify");
 var readPackageTree = require("read-package-tree");
 
-module.exports = function(dir, cb) {
+function getWantedDependencies(dir, callback) {
   readPackageTree(dir, function(err, root) {
     if (err) {
-      cb(err);
+      callback(err);
       return;
     }
 
@@ -27,6 +28,8 @@ module.exports = function(dir, cb) {
       return dependency.installedVersion !== dependency.wantedVersion;
     });
 
-    cb(null, wantedDependencies);
+    callback(null, wantedDependencies);
   });
 };
+
+module.exports = pify(getWantedDependencies);
