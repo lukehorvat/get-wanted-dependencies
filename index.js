@@ -1,4 +1,7 @@
+"use strict";
+
 var readPackageTree = require("read-package-tree");
+var objectAssign = require("object-assign");
 
 module.exports = function(dir, cb) {
   readPackageTree(dir, function(err, root) {
@@ -7,7 +10,7 @@ module.exports = function(dir, cb) {
       return;
     }
 
-    var packageDependencyVersions = root.package.dependencies;
+    var packageDependencyVersions = objectAssign(root.package.dependencies, root.package.devDependencies);
 
     var installedDependencyVersions = root.children.reduce(function(obj, child) {
       obj[child.package.name] = child.package.version;

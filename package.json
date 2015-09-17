@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "object-assign": "4.0.1",
     "read-package-tree": "5.1.0"
   },
   "devDependencies": {}
