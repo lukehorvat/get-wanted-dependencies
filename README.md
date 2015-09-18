@@ -20,6 +20,11 @@ Example:
 import getWantedDependencies from "get-wanted-dependencies";
 
 getWantedDependencies(__dirname, (err, wantedDependencies) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
   wantedDependencies.forEach(dependency => {
     console.log(dependency.name);
     console.log(dependency.installedVersion);
