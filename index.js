@@ -3,6 +3,7 @@
 var objectAssign = require("object-assign");
 var pify = require("pify");
 var readPackageTree = require("read-package-tree");
+var semver = require("semver");
 
 function getWantedDependencies(dir, callback) {
   readPackageTree(dir, function(err, root) {
@@ -20,12 +21,12 @@ function getWantedDependencies(dir, callback) {
 
     var wantedDependencies = Object.keys(packageDependencyVersions).map(function(name) {
       return {
-        packageName: name,
+        name: name,
         installedVersion: installedDependencyVersions[name] || null,
         wantedVersion: packageDependencyVersions[name]
       };
     }).filter(function(dependency) {
-      return dependency.installedVersion !== dependency.wantedVersion;
+      return !dependency.installedVersion || (dependency.installedVersion !== dependency.wantedVersion && semver.valid(dependency.wantedVersion));
     });
 
     callback(null, wantedDependencies);
