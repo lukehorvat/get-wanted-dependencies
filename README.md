@@ -32,3 +32,22 @@ getWantedDependencies(__dirname, (err, wantedDependencies) => {
   });
 });
 ```
+
+## Tip
+
+When working on a team, one can sometimes forget to run `npm install` after pulling in dependency changes made by others. Solution – integrate the package into your automated build system!
+
+Example [gulp](http://gulpjs.com/) task:
+
+```javascript
+gulp.task("check-dependencies", done => {
+  getWantedDependencies(__dirname).then(wantedDependencies => {
+    if (wantedDependencies.length > 0) {
+      console.error("Wanted dependencies not installed. Run `npm install`.");
+      process.exit(1);
+    }
+
+    done();
+  }).catch(err => done(err));
+});
+```
