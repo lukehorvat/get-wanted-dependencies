@@ -31,6 +31,7 @@
     "latest",
     "npm",
     "package",
-    "install"
+    "install",
+    "gulpfriendly"
   ]
 }

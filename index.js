@@ -30,6 +30,6 @@ function getWantedDependencies(dir, callback) {
 
     callback(null, wantedDependencies);
   });
-};
+}
 
 module.exports = pify(getWantedDependencies);
