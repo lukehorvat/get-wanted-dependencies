@@ -1,6 +1,6 @@
 {
   "name": "get-wanted-dependencies",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Analyze package.json and /node_modules to get a list of 'wanted' dependencies.",
   "author": "Luke Horvat",
   "license": "MIT",
