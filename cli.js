@@ -4,7 +4,7 @@
 
 var getWantedDependencies = require("./");
 
-getWantedDependencies(__dirname).then(function(wantedDependencies) {
+getWantedDependencies(process.cwd()).then(function(wantedDependencies) {
   wantedDependencies.forEach(function(dependency) {
     console.log(dependency.name + " (" + dependency.wantedVersion + ")");
   });
