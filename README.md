@@ -7,10 +7,12 @@ Get a list of NPM package dependencies that are "wanted", based on the contents 
 Install the package with NPM:
 
 ```bash
-$ npm install get-wanted-dependencies
+$ npm install -g get-wanted-dependencies
 ```
 
-## Usage
+The `-g` flag is recommended for easy CLI usage, but completely optional.
+
+## API
 
 The package exposes a function with the signature `(dir, callback)`, where `dir` is the directory containing `package.json` and `callback` is a typical Node.js-style callback function.
 
@@ -31,6 +33,14 @@ getWantedDependencies(__dirname, (err, wantedDependencies) => {
     console.log(dependency.wantedVersion);
   });
 });
+```
+
+## CLI
+
+Run `get-wanted-dependencies` from the command line to output a list of wanted dependencies for the current directory:
+
+```bash
+$ get-wanted-dependencies
 ```
 
 ## Tip
