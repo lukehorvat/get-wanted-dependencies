@@ -12,6 +12,7 @@
     "url": "https://github.com/lukehorvat/get-wanted-dependencies/issues"
   },
   "main": "./index.js",
+  "bin": "./cli.js",
   "dependencies": {
     "object-assign": "4.0.1",
     "pify": "2.2.0",
